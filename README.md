@@ -1,354 +1,196 @@
+**Data Analytics Cheatsheet: Matplotlib and Seaborn**
 
-# Machine Learning Cheatsheet
+This cheatsheet provides an overview of Matplotlib and Seaborn, two popular data visualization libraries in Python. It includes important syntax, code examples, and key information to help you create visually appealing and informative plots.
 
-## Preprocessing Techniques:
+## Matplotlib:
 
-### Data Cleaning:
+### Line Plot:
 - **Use Cases:**
-  - Removing missing values and handling outliers to ensure data quality.
-  - Cleaning data before training models to prevent bias and improve accuracy.
-
-**Advantages:**
-- Improves data quality and integrity.
-- Reduces the chance of biased or incomplete analysis.
+  - Visualizing trends and changes over continuous data.
 
 **Code:**
 ```python
-import pandas as pd
-from sklearn.preprocessing import Imputer
+import matplotlib.pyplot as plt
 
-# Removing missing values
-df.dropna()
+# Create a line plot
+plt.plot(x, y)
 
-# Handling missing values using mean imputation
-imputer = Imputer(strategy='mean')
-df['column_name'] = imputer.fit_transform(df[['column_name']])
+# Customize the plot
+plt.title("Title")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.grid(True)
+plt.legend(["Legend"])
+plt.show()
 ```
 
-### Feature Scaling:
+### Bar Plot:
 - **Use Cases:**
-  - Scaling features for algorithms that are sensitive to feature magnitudes.
-  - Ensuring equal importance for all features in distance-based algorithms.
-
-**Advantages:**
-- Prevents features from dominating others.
-- Helps algorithms that are sensitive to feature magnitudes or distances.
+  - Comparing categories or discrete data.
 
 **Code:**
 ```python
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
+import matplotlib.pyplot as plt
 
-# Standardization
-scaler = StandardScaler()
-df['column_name'] = scaler.fit_transform(df[['column_name']])
+# Create a bar plot
+plt.bar(x, y)
 
-# Normalization
-scaler = MinMaxScaler()
-df['column_name'] = scaler.fit_transform(df[['column_name']])
+# Customize the plot
+plt.title("Title")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.xticks(rotation=90)
+plt.show()
 ```
 
-### Encoding Categorical Variables:
+### Histogram:
 - **Use Cases:**
-  - Converting categorical variables into numerical representations for model compatibility.
-  - Preserving the ordinal relationship between categories in ordinal encoding.
-  - Capturing multiple categories with one-hot encoding.
-
-**Advantages:**
-- Enables algorithms to process categorical variables.
-- Preserves the ordinal relationship in ordinal encoding.
-- Captures multiple categories without imposing an arbitrary order in one-hot encoding.
+  - Analyzing the distribution of continuous data.
 
 **Code:**
 ```python
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+import matplotlib.pyplot as plt
 
-# Label Encoding
-label_encoder = LabelEncoder()
-df['column_name'] = label_encoder.fit_transform(df['column_name'])
+# Create a histogram
+plt.hist(data, bins=10)
 
-# One-Hot Encoding
-one_hot_encoder = OneHotEncoder()
-encoded_features = one_hot_encoder.fit_transform(df[['column_name']])
+# Customize the plot
+plt.title("Title")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
 ```
 
-### Feature Extraction:
+### Scatter Plot:
 - **Use Cases:**
-  - Converting raw data, such as text or images, into numerical representations.
-  - Capturing the frequency, importance, or relevance of features in the data.
-
-**Advantages:**
-- Converts raw data into numerical representations suitable for machine learning algorithms.
-- Captures the frequency, importance, or relevance of features in the data.
+  - Visualizing the relationship between two continuous variables.
 
 **Code:**
 ```python
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+import matplotlib.pyplot as plt
 
-# Count Vectorization
-vectorizer = CountVectorizer()
-X = vectorizer.fit_transform(corpus)
+# Create a scatter plot
+plt.scatter(x, y)
 
-# TF-IDF Vectorization
-vectorizer = TfidfVectorizer()
-X = vectorizer.fit_transform(corpus)
+# Customize the plot
+plt.title("Title")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
 ```
 
-## Supervised Machine Learning Algorithms:
-
-### Linear Regression:
+### Box Plot:
 - **Use Cases:**
-  - Predicting continuous outcomes based on linear relationships between features and targets.
-
-**Key Information:**
-- Linear regression works with numeric features and targets.
-- It uses the equation: y = β0 + β1x1 + β2x2 + ... + βnxn.
-- Linear regression does not have an activation function.
+  - Displaying the distribution of data across categories.
 
 **Code:**
 ```python
-from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as plt
 
-# Training
-model = LinearRegression()
-model.fit(X_train, y_train)
+# Create a box plot
+plt.boxplot(data)
 
-# Prediction
-y_pred = model.predict(X_test)
+# Customize the plot
+plt.title("Title")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
 ```
 
-### Logistic Regression:
-- **Use Cases:**
-  - Binary classification problems where the outcome is a probability of class membership.
+## Seaborn:
 
-**Key Information:**
-- Logistic regression is suitable for binary classification tasks.
-- It uses the sigmoid (logistic) activation function to produce probabilities.
-- Logistic regression can handle both numeric and categorical features.
+### Line Plot:
+- **Use Cases:**
+  - Visualizing trends and changes over continuous data.
+  - Comparing multiple groups or categories.
 
 **Code:**
 ```python
-from sklearn.linear_model import LogisticRegression
+import seaborn as sns
 
-# Training
-model = LogisticRegression()
-model.fit(X_train, y_train)
+# Create a line plot
+sns.lineplot(x=x, y=y, hue="category", data=df)
 
-# Prediction
-y_pred = model.predict(X_test)
+# Customize the plot
+plt.title("Title")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
 ```
 
-### Decision Trees:
+### Bar Plot:
 - **Use Cases:**
-  - Capturing complex relationships and interactions in the data.
-  - Providing interpretability with feature importance and decision-making.
-
-**Key Information:**
-- Decision trees can handle both classification and regression tasks.
-- They partition the feature space based on conditions to make predictions.
-- Decision trees can work with numeric and categorical features.
+  - Comparing categories or discrete data.
+  - Showing aggregated values.
 
 **Code:**
 ```python
-from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
+import seaborn as sns
 
-# Classification
-model = DecisionTreeClassifier()
-model.fit(X_train, y_train)
+# Create a bar plot
+sns.barplot(x=x, y=y, hue="category", data=df)
 
-# Regression
-model = DecisionTreeRegressor()
-model.fit(X_train, y_train)
-
-# Prediction
-y_pred = model.predict(X_test)
+# Customize the plot
+plt.title("Title")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
 ```
 
-### Random Forest:
+### Histogram:
 - **Use Cases:**
-  - Reducing overfitting compared to a single decision tree.
-  - Handling high-dimensional and noisy datasets effectively.
-
-**Key Information:**
-- Random forest is an ensemble of decision trees.
-- It improves prediction accuracy and reduces overfitting.
-- Random forest can handle both classification and regression problems.
+  - Analyzing the distribution of continuous data.
 
 **Code:**
 ```python
-from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
+import seaborn as sns
 
-# Classification
-model = RandomForestClassifier()
-model.fit(X_train
+# Create a histogram
+sns.histplot(data, bins=10)
 
-, y_train)
-
-# Regression
-model = RandomForestRegressor()
-model.fit(X_train, y_train)
-
-# Prediction
-y_pred = model.predict(X_test)
+# Customize the plot
+plt.title("Title")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
 ```
 
-### Support Vector Machines (SVM):
+### Scatter Plot:
 - **Use Cases:**
-  - Classifying both linear and nonlinear datasets.
-  - Separating data points using optimal hyperplanes in high-dimensional spaces.
-
-**Key Information:**
-- SVM can handle both classification and regression tasks.
-- It finds the optimal hyperplane that maximally separates classes.
-- SVM can handle both numeric and categorical features.
+  - Visualizing the relationship between two continuous variables.
+  - Highlighting patterns or clusters.
 
 **Code:**
 ```python
-from sklearn.svm import SVC, SVR
+import seaborn as sns
 
-# Classification
-model = SVC()
-model.fit(X_train, y_train)
+# Create a scatter plot
+sns.scatterplot(x=x, y=y, hue="category", data=df)
 
-# Regression
-model = SVR()
-model.fit(X_train, y_train)
-
-# Prediction
-y_pred = model.predict(X_test)
+# Customize the plot
+plt.title("Title")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
 ```
 
-### K-Nearest Neighbors (KNN):
+### Box Plot:
 - **Use Cases:**
-  - Identifying similar patterns or neighbors for classification or regression.
-  - Handling non-linear relationships and local patterns effectively.
-
-**Key Information:**
-- KNN finds the k nearest neighbors to make predictions.
-- It can handle both classification and regression problems.
-- KNN works with numeric features and targets.
+  - Displaying the distribution of data across categories.
+  - Comparing groups or categories.
 
 **Code:**
 ```python
-from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
+import seaborn as sns
 
-# Classification
-model = KNeighborsClassifier()
-model.fit(X_train, y_train)
+# Create a box plot
+sns.boxplot(x=x, y=y, hue="category", data=df)
 
-# Regression
-model = KNeighborsRegressor()
-model.fit(X_train, y_train)
-
-# Prediction
-y_pred = model.predict(X_test)
+# Customize the plot
+plt.title("Title")
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.show()
 ```
 
-## Unsupervised Learning Techniques:
-
-### K-Means Clustering:
-- **Use Cases:**
-  - Grouping similar data points together based on similarity metrics.
-  - Market segmentation, image compression, and anomaly detection.
-
-**Key Information:**
-- K-Means clustering aims to minimize within-cluster variance.
-- It assigns data points to the nearest cluster centroid.
-- K-Means works with numeric features.
-
-**Code:**
-```python
-from sklearn.cluster import KMeans
-
-model = KMeans(n_clusters=K)
-model.fit(X)
-
-# Get cluster labels
-labels = model.labels_
-
-# Get cluster centroids
-centroids = model.cluster_centers_
-```
-
-### Principal Component Analysis (PCA):
-- **Use Cases:**
-  - Reducing dimensionality while preserving important information.
-  - Visualizing high-dimensional data in a lower-dimensional space.
-
-**Key Information:**
-- PCA transforms high-dimensional data into a lower-dimensional space.
-- It captures maximum variance in the data in orthogonal components.
-- PCA works with numeric features.
-
-**Code:**
-```python
-from sklearn.decomposition import PCA
-
-model = PCA(n_components=k)
-model.fit(X)
-
-# Transform data to reduced dimensionality
-X_reduced = model.transform(X)
-```
-
-### Hierarchical Clustering:
-- **Use Cases:**
-  - Identifying hierarchical relationships and structures in the data.
-  - Dendrogram visualization and identifying clusters of different sizes.
-
-**Key Information:**
-- Hierarchical clustering builds a tree-like structure of clusters.
-- It does not require a predefined number of clusters.
-- Hierarchical clustering can work with both numeric and categorical features.
-
-**Code:**
-```python
-from scipy.cluster.hierarchy import linkage, dendrogram
-
-# Perform hierarchical clustering
-Z = linkage(X, method='complete')
-
-# Plot dendrogram
-dendrogram(Z)
-```
-
-### Association Rule Learning (Apriori Algorithm):
-- **Use Cases:**
-  - Discovering interesting relationships and patterns in transactional data.
-  - Market basket analysis and recommendation systems.
-
-**Key Information:**
-- Apriori algorithm identifies frequent itemsets and association rules.
-- It measures support, confidence, and lift to find significant associations.
-- Association rule learning works with categorical data.
-
-**Code:**
-```python
-from mlxtend.frequent_patterns import apriori
-from mlxtend.frequent_patterns import association_rules
-
-# Generate frequent itemsets
-frequent_itemsets = apriori(df, min_support=0.1, use_colnames=True)
-
-# Generate association rules
-rules = association_rules(frequent_itemsets, metric='confidence', min_threshold=0.5)
-```
-
-### Dimensionality Reduction using t-SNE:
-- **Use Cases:**
-  - Visualizing high-dimensional data in a lower-dimensional space.
-  - Preserving local structures and clusters in the data.
-
-**Key Information:**
-- t-SNE reduces high-dimensional data to a lower-dimensional representation.
-- It emphasizes local structures and captures non-linear relationships.
-- t-SNE works with numeric features.
-
-**Code:**
-```python
-from sklearn.manifold import TSNE
-
-model = TSNE(n_components=2, perplexity=30, learning_rate=200)
-X_tsne = model.fit_transform(X)
-```
-
-This revision guide provides a summary of essential concepts, code snippets, important use cases, advantages, and key information for popular preprocessing techniques, supervised machine learning algorithms, and unsupervised learning techniques. Remember to adapt the code according to your specific use case and dataset. Good luck with your machine learning endeavors!
+This cheatsheet provides a quick reference for creating various types of plots using Matplotlib and Seaborn. Remember to import the necessary libraries, customize the plots according to your requirements, and explore the additional functionalities and options available in these libraries. Happy visualizing!
